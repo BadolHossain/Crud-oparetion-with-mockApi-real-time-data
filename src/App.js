@@ -1,10 +1,11 @@
 
 import "./App.css";
 import Button from "react-bootstrap/Button";
+import Create from "./components/Create/Create";
 
 function App() {
   return <div className="App">
-     <Button variant="outline-dark">Dark</Button>
+     <Create />
   </div>;
 }
 
