@@ -3,24 +3,27 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Create.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const UserName = (e) => {
-    e.preventDefault();
     e.target.value(setName);
     e.target.value(setEmail);
     console.log(email);
   };
-  const header = {"Access-Control-allow-Origin":"*"}
+  const history = useNavigate()
+  const header = { "Access-Control-allow-Origin": "*" };
   const handleClick = (e) => {
-    console.log('clickd')
+    e.preventDefault();
+    console.log("clickd");
     axios.post("https://62f899fe3eab3503d1d873c7.mockapi.io/Crud", {
       name: name,
       email: email,
       header,
     });
+    history('/read')
   };
   return (
     <div className="middel">
@@ -32,10 +35,7 @@ const Create = () => {
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
           />
-        </Form.Group>
-        {email}
-        {name}
-
+        </Form.Group>{" "}
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Control
             type="text"
